@@ -4,7 +4,7 @@
   "description": "API responsável pela indicação de quais animes ainda tenho que assistir.",
   "main": "index.js",
   "author": "AllanCapistrano <allan.capistrano3@gmail.com>",
-  "license": "MIT",
+  "license": "GNU GPL v3",
   "scripts": {
       "dev": "ts-node-dev src/server.ts"
   },
