@@ -1,5 +1,7 @@
 import express from "express";
+import "express-async-errors";
 
+import "./database";
 import { router } from './routes';
 
 const app = express();
