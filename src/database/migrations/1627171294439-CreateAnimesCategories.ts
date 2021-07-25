@@ -16,6 +16,16 @@ export class CreateAnimesCategories1627171294439 implements MigrationInterface {
             type: "uuid",
             isPrimary: true,
           },
+          {
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
+          {
+            name: "updated_at",
+            type: "timestamp",
+            default: "now()",
+          },
         ],
         foreignKeys: [
           {
