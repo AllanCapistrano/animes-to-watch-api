@@ -30,7 +30,7 @@ class Anime {
 
   @ManyToMany(() => Category)
   @JoinTable()
-  Category: Category[];
+  categories: Category[];
 
   @CreateDateColumn()
   created_at: Date;
