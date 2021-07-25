@@ -8,7 +8,7 @@ import {
 import { v4 as uuid } from "uuid";
 
 @Entity()
-class Categoty {
+class Category {
   @PrimaryColumn()
   readonly id: string;
 
@@ -19,16 +19,16 @@ class Categoty {
   created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Date
+  updated_at: Date;
 
   /**
    * Caso seja uma nova categoria, é gerado um ID para a mesma.
    */
   constructor() {
-    if(!this.id) {
+    if (!this.id) {
       this.id = uuid();
     }
   }
 }
 
-export { Categoty };
+export { Category };

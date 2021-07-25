@@ -9,7 +9,7 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-import { Categoty } from "./Category";
+import { Category } from "./Category";
 
 @Entity()
 class Anime {
@@ -28,9 +28,9 @@ class Anime {
   @Column()
   description: string;
 
-  @ManyToMany(() => Categoty)
+  @ManyToMany(() => Category)
   @JoinTable()
-  categoty: Categoty[];
+  Category: Category[];
 
   @CreateDateColumn()
   created_at: Date;
