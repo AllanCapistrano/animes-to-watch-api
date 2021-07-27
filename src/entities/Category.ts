@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity()
+@Entity("categories")
 class Category {
   @PrimaryColumn()
   readonly id: string;
