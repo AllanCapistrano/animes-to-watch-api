@@ -20,13 +20,11 @@ const createCategoryController = new CreateCategoryController();
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Routes ------------------------------------- */
-
 router.get("/", (request: Request, response: Response) => {
   return response.json({ data: "Hello World" }).status(200);
 });
 
 /* ------------------------------- User ------------------------------------- */
-
 /**
  * Rota para registro de novos usuários.
  */
@@ -39,7 +37,6 @@ router.post("/login", authenticateUserController.handle);
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Category ----------------------------------- */
-
 /**
  * Rota para criação de uma nova categoria.
  */
