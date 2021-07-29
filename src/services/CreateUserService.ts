@@ -23,11 +23,11 @@ class CreateUserService {
     /**
      * Validando o email.
      */
-    if(!validate(email)){
+    if (!validate(email)) {
       throw new Error("Email inválido! Tente novamente.");
     }
 
-    const userAlreadyExists = await userRepository.findOne({ email });
+    const userAlreadyExists = await userRepository.findByEmail(email);
 
     /**
      * Verifica se o usuário já está cadastrado (email é único).
@@ -38,14 +38,12 @@ class CreateUserService {
 
     const passwordHash = await hash(password, 8);
 
-    const user = userRepository.create({
+    const user = userRepository.createAndSave(
       name,
       email,
-      password: passwordHash,
-      avatar,
-    });
-
-    await userRepository.save(user);
+      passwordHash,
+      avatar
+    );
 
     return user;
   }
