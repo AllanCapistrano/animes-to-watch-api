@@ -19,8 +19,11 @@ class UsersRepositories extends Repository<User> {
   }
 
   /**
-   * Cria um novo usuário e salva no Banco de Dados.
-   * @param user User
+   * Cria um usuário e salva no Banco de Dados.
+   * @param name string
+   * @param email string
+   * @param password string
+   * @param avatar strin
    * @returns JSON
    */
   async createAndSave(name: string, email: string, password: string, avatar: string) {
