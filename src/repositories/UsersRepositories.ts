@@ -23,7 +23,7 @@ class UsersRepositories extends Repository<User> {
    * @param name string
    * @param email string
    * @param password string
-   * @param avatar strin
+   * @param avatar string
    * @returns JSON
    */
   async createAndSave(name: string, email: string, password: string, avatar: string) {
