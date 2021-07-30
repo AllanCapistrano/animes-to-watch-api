@@ -5,7 +5,7 @@ import { AnimesCategoriesRepositories } from "../repositories/AnimesCategoriesRe
 
 interface IAnime {
   name: string;
-  image: string;
+  image?: string;
   url: string;
   description?: string;
   categories: string[];
@@ -17,7 +17,7 @@ class CreateAnimeService {
    * @param anime Anime
    * @returns JSON
    */
-  async execute({ name, image, url, description = null, categories }: IAnime) {
+  async execute({ name, image = null, url, description = null, categories }: IAnime) {
     const animesRepositories = getCustomRepository(AnimesRepositories);
 
     const animeAlreadyExists = await animesRepositories.findOne({ name });
