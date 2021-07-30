@@ -4,8 +4,12 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+
+import { Anime } from "./Anime";
+import { AnimeCategory } from "./AnimeCategory";
 
 @Entity("categories")
 class Category {
@@ -14,6 +18,12 @@ class Category {
 
   @Column()
   name: string;
+
+  /**
+   * Relacionamento Many To Many com Anime
+   */
+  @OneToMany(() => AnimeCategory, ac => ac.category)
+  animeConnection: Promise<Anime[]>
 
   @CreateDateColumn()
   created_at: Date;
