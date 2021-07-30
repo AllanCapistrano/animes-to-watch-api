@@ -4,39 +4,35 @@ export class CreateAnimesCategories1627171294439 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.createTable(
       new Table({
-        name: "animes_categories_categories",
+        name: "animes_categories",
         columns: [
           {
-            name: "animesId",
+            name: "animeId",
             type: "uuid",
             isPrimary: true,
           },
           {
-            name: "categoriesId",
+            name: "categoryId",
             type: "uuid",
             isPrimary: true,
-          },
-          {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
-          },
-          {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
           },
         ],
         foreignKeys: [
           {
-            columnNames: ["animesId"],
-            referencedColumnNames: ["id"],
+            name: "FKAnimeId",
             referencedTableName: "animes",
+            referencedColumnNames: ["id"],
+            columnNames: ["animeId"],
+            onDelete: "SET NULL",
+            onUpdate: "SET NULL",
           },
           {
-            columnNames: ["categoriesId"],
-            referencedColumnNames: ["id"],
+            name: "FKCategoryId",
             referencedTableName: "categories",
+            referencedColumnNames: ["id"],
+            columnNames: ["categoryId"],
+            onDelete: "SET NULL",
+            onUpdate: "SET NULL",
           },
         ],
       })
