@@ -1,7 +1,7 @@
 {
   "name": "animes-to-watch-api",
   "version": "1.0.0",
-  "description": "API responsável pela indicação de quais animes ainda tenho que assistir.",
+  "description": "API destinada para a organização dos animes que eu ainda vou assistir.",
   "main": "index.js",
   "author": "AllanCapistrano <allan.capistrano3@gmail.com>",
   "license": "GPL-3.0",
