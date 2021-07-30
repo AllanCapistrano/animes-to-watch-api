@@ -3,6 +3,7 @@ import { Request, Response, Router } from "express";
 import { CreateUserController } from "./controllers/CreateUserController";
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
 import { CreateCategoryController } from "./controllers/CreateCategoryController";
+import { CreateAnimeController } from "./controllers/CreateAnimeController";
 
 const router = Router();
 
@@ -17,6 +18,11 @@ const authenticateUserController = new AuthenticateUserController();
  * Category Controllers.
  */
 const createCategoryController = new CreateCategoryController();
+
+/**
+ * Anime Controllers.
+ */
+const createAnimeController = new CreateAnimeController();
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Routes ------------------------------------- */
@@ -42,5 +48,12 @@ router.post("/login", authenticateUserController.handle);
  */
 router.post("/categories/create", createCategoryController.handle);
 /* -------------------------------------------------------------------------- */
+
+/* ------------------------------- Anime ------------------------------------ */
+/**
+ * Rota para criação de um novo anime.
+ */
+ router.post("/animes/create", createAnimeController.handle);
+ /* -------------------------------------------------------------------------- */
 
 export { router };
