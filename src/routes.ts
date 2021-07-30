@@ -5,6 +5,8 @@ import { AuthenticateUserController } from "./controllers/AuthenticateUserContro
 import { CreateCategoryController } from "./controllers/CreateCategoryController";
 import { CreateAnimeController } from "./controllers/CreateAnimeController";
 
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
+
 const router = Router();
 
 /* --------------------------- Controllers ---------------------------------- */
@@ -46,14 +48,22 @@ router.post("/login", authenticateUserController.handle);
 /**
  * Rota para criação de uma nova categoria.
  */
-router.post("/categories/create", createCategoryController.handle);
+router.post(
+  "/categories/create",
+  ensureAuthenticated,
+  createCategoryController.handle
+);
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------------- Anime ------------------------------------ */
 /**
  * Rota para criação de um novo anime.
  */
- router.post("/animes/create", createAnimeController.handle);
- /* -------------------------------------------------------------------------- */
+router.post(
+  "/animes/create",
+  ensureAuthenticated,
+  createAnimeController.handle
+);
+/* -------------------------------------------------------------------------- */
 
 export { router };
