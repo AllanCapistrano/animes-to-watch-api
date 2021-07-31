@@ -9,7 +9,7 @@ interface IAnimesRepositories {
   findByName(name: string): Promise<Anime>;
 
   /**
-   * Cria um anime e salva no Banco de Dados.
+   * Cria um anime e salva-o.
    * @param name string
    * @param image string
    * @param url string

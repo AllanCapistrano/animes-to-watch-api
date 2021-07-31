@@ -9,7 +9,7 @@ interface IUsersRepositories {
   findByEmail(email: string): Promise<User>;
 
   /**
-   * Cria um usuário e salva no Banco de Dados.
+   * Cria um usuário e salva-o.
    * @param name string
    * @param email string
    * @param password string

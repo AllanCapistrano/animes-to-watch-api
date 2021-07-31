@@ -1,7 +1,6 @@
 interface IAnimesCategoriesRepositories {
   /**
-   * Cria e salva uma entidade da tabela pivô animes_categories no Banco de
-   * Dados.
+   * Cria e salva uma entidade que se relaciona com Anime e Category.
    * @param categories string[]
    * @param animeId string
    */

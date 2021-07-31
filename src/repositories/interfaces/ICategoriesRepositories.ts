@@ -10,7 +10,7 @@ interface ICategoriesRepositories {
 
   /**
    * Cria uma categoria com a primeira letra de cada palavra em
-   * caixa alta, e salva no Banco de Dados.
+   * caixa alta, e salva-a.
    * @param name string
    * @returns Category
    */

@@ -4,6 +4,11 @@ import { User } from "../../entities/User";
 class UsersRepositoriesInMemory implements IUsersRepositories {
   private users: User[] = [];
 
+  /**
+   * Procura um usuário cadastrado pelo email.
+   * @param email string
+   * @returns User
+   */
   async findByEmail(email: string): Promise<User> {
     let user = null;
 
@@ -14,16 +19,17 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
       }
     }
 
-    // this.users.forEach((user) => {
-    //   if (user.email === email) {
-    //     console.log(user)
-    //     return user;
-    //   }
-    // });
-
     return user;
   }
 
+  /**
+   * Cria um usuário e salva no Array.
+   * @param name string
+   * @param email string
+   * @param password string
+   * @param avatar string | null
+   * @returns User
+   */
   async createAndSave(
     name: string,
     email: string,
