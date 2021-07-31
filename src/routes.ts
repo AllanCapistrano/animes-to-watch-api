@@ -13,7 +13,6 @@ const router = Router();
 /**
  * User Controllers.
  */
-// const createUserController = new CreateUserController();
 const authenticateUserController = new AuthenticateUserController();
 
 /**
@@ -36,7 +35,6 @@ router.get("/", (request: Request, response: Response) => {
 /**
  * Rota para registro de novos usuários.
  */
-// router.post("/users/register", createUserController.handle);
 router.post("/users/register", (request: Request, response: Response) =>
   createUserFactory().handle(request, response)
 );
