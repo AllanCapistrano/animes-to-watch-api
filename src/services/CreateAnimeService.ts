@@ -27,7 +27,7 @@ class CreateAnimeService {
   }: IAnime) {
     const animesRepositories = getCustomRepository(AnimesRepositories);
 
-    const animeAlreadyExists = await animesRepositories.findOne({ name });
+    const animeAlreadyExists = await animesRepositories.findByName(name);
 
     if (animeAlreadyExists) {
       throw new Error("Anime já cadastrado! Tente novamente.");
@@ -45,32 +45,27 @@ class CreateAnimeService {
      * Procurando no Banco de Dados a(s) categoria(s) enviada(s) na requisição,
      * para realizar a validação.
      */
-    const categoriesInDB =  await categoriesRepositories.findByIds(categories)
+    const categoriesInDB = await categoriesRepositories.findByIds(categories);
 
-    if(categories.length != categoriesInDB.length) {
-      throw new Error("Categoria(s) inválida(s)! Tente novamente.")
+    if (categories.length != categoriesInDB.length) {
+      throw new Error("Categoria(s) inválida(s)! Tente novamente.");
     }
-    
+
     const animesCategoriesRepositories = getCustomRepository(
       AnimesCategoriesRepositories
     );
 
-    const anime = animesRepositories.create({
+    const anime = await animesRepositories.createAndSave(
       name,
       image,
       url,
-      description,
-    });
-
-    await animesRepositories.save(anime);
+      description
+    );
 
     /**
      * Criando os relacionanmentos do anime cadastrado.
      */
-    await animesCategoriesRepositories.createAndSaveMultiplesEntities(
-      categories,
-      anime.id
-    );
+    await animesCategoriesRepositories.createAndSave(categories, anime.id);
 
     return anime;
   }
