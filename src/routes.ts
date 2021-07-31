@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 
-import { CreateUserController } from "./controllers/CreateUserController";
+import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
 import { CreateCategoryController } from "./controllers/CreateCategoryController";
 import { CreateAnimeController } from "./controllers/CreateAnimeController";
@@ -13,7 +13,7 @@ const router = Router();
 /**
  * User Controllers.
  */
-const createUserController = new CreateUserController();
+// const createUserController = new CreateUserController();
 const authenticateUserController = new AuthenticateUserController();
 
 /**
@@ -36,7 +36,10 @@ router.get("/", (request: Request, response: Response) => {
 /**
  * Rota para registro de novos usuários.
  */
-router.post("/users/register", createUserController.handle);
+// router.post("/users/register", createUserController.handle);
+router.post("/users/register", (request: Request, response: Response) =>
+  createUserFactory().handle(request, response)
+);
 
 /**
  * Rota para autenticação de usuário.
