@@ -1,15 +1,19 @@
 import { EntityRepository, Repository } from "typeorm";
 
+import { ICategoriesRepositories } from "../repositories/interfaces/ICategoriesRepositories";
 import { Category } from "../entities/Category";
 
 @EntityRepository(Category)
-class CategoriesRepositories extends Repository<Category> {
+class CategoriesRepositories
+  extends Repository<Category>
+  implements ICategoriesRepositories
+{
   /**
    * Procura uma categoria pelo nome.
    * @param name string
-   * @returns JSON
+   * @returns Category
    */
-  async findByName(name: string) {
+  async findByName(name: string): Promise<Category> {
     const nameSplited = name.toLowerCase().split(" ");
 
     /**
@@ -23,12 +27,12 @@ class CategoriesRepositories extends Repository<Category> {
   }
 
   /**
-   * Cria uma categoria com a primeira letra de cada palavra em 
+   * Cria uma categoria com a primeira letra de cada palavra em
    * caixa alta, e salva no Banco de Dados.
    * @param name string
-   * @returns JSON
+   * @returns Category
    */
-  async createAndSave(name: string) {
+  async createAndSave(name: string): Promise<Category> {
     const nameSplited = name.toLowerCase().split(" ");
 
     /**
@@ -38,7 +42,9 @@ class CategoriesRepositories extends Repository<Category> {
       return temp.charAt(0).toUpperCase() + temp.slice(1);
     });
 
-    return this.save(await this.create({ name: nameFirstLetrterUpperCase.join(" ") }));
+    return this.save(
+      await this.create({ name: nameFirstLetrterUpperCase.join(" ") })
+    );
   }
 }
 

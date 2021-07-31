@@ -1,15 +1,16 @@
 import { EntityRepository, Repository } from "typeorm";
 
+import { IUsersRepositories } from "../repositories/interfaces/IUsersRepositories";
 import { User } from "../entities/User";
 
 @EntityRepository(User)
-class UsersRepositories extends Repository<User> {
+class UsersRepositories extends Repository<User> implements IUsersRepositories {
   /**
    * Procura um usuário cadastrado pelo email.
-   * @param email string 
-   * @returns JSON
+   * @param email string
+   * @returns User
    */
-  async findByEmail(email: string) {
+  async findByEmail(email: string): Promise<User> {
     /**
      * Colocando o email em caixa baixa.
      */
@@ -24,9 +25,14 @@ class UsersRepositories extends Repository<User> {
    * @param email string
    * @param password string
    * @param avatar string
-   * @returns JSON
+   * @returns User
    */
-  async createAndSave(name: string, email: string, password: string, avatar: string) {
+  async createAndSave(
+    name: string,
+    email: string,
+    password: string,
+    avatar: string | null
+  ): Promise<User> {
     /**
      * Colocando o email em caixa baixa.
      */
