@@ -1,8 +1,7 @@
-import { getCustomRepository } from "typeorm";
 import { hash } from "bcryptjs";
 import { validate } from "email-validator";
 
-import { UsersRepositories } from "../repositories/UsersRepositories";
+import { IUsersRepositories } from "../repositories/interfaces/IUsersRepositories";
 
 interface IUser {
   name: string;
@@ -13,13 +12,17 @@ interface IUser {
 
 class CreateUserService {
   /**
+   * Método construtor.
+   * @param userRepository IUsersRepositories
+   */
+  constructor(private userRepository: IUsersRepositories) {}
+
+  /**
    * Cria um novo usuário no Banco de Dados.
    * @param user User
    * @returns User
    */
   async execute({ name, email, password, avatar = null }: IUser) {
-    const userRepository = getCustomRepository(UsersRepositories);
-
     /**
      * Validando o email.
      */
@@ -27,7 +30,7 @@ class CreateUserService {
       throw new Error("Email inválido! Tente novamente.");
     }
 
-    const userAlreadyExists = await userRepository.findByEmail(email);
+    const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     /**
      * Verifica se o usuário já está cadastrado (email é único).
@@ -38,7 +41,7 @@ class CreateUserService {
 
     const passwordHash = await hash(password, 8);
 
-    const user = userRepository.createAndSave(
+    const user = this.userRepository.createAndSave(
       name,
       email,
       passwordHash,
