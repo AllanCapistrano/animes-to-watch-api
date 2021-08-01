@@ -1,6 +1,4 @@
-import { getCustomRepository } from "typeorm";
-
-import { CategoriesRepositories } from "../repositories/CategoriesRepositories";
+import { ICategoriesRepositories } from "../repositories/interfaces/ICategoriesRepositories";
 
 interface ICategory {
   name: string;
@@ -8,14 +6,20 @@ interface ICategory {
 
 class CreateCategoryService {
   /**
+   * Método Construtor.
+   * @param categoriesRepositories ICategoriesRepositories
+   */
+  constructor(private categoriesRepositories: ICategoriesRepositories) {}
+
+  /**
    * Cria uma nova categoria no Banco de Dados.
    * @param category Category
    * @returns Category
    */
   async execute({ name }: ICategory) {
-    const categoriesRepositories = getCustomRepository(CategoriesRepositories);
-
-    const categoryAlreadyExists = await categoriesRepositories.findByName(name);
+    const categoryAlreadyExists = await this.categoriesRepositories.findByName(
+      name
+    );
 
     /**
      * Verifica se a categoria já existe no Banco de Dados.
@@ -24,7 +28,7 @@ class CreateCategoryService {
       throw new Error("Categoria já cadastrada.");
     }
 
-    const category = categoriesRepositories.createAndSave(name);
+    const category = this.categoriesRepositories.createAndSave(name);
 
     return category;
   }

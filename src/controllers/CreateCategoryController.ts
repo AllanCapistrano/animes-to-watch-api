@@ -4,7 +4,13 @@ import { CreateCategoryService } from "../services/CreateCategoryService";
 
 class CreateCategoryController {
   /**
-   * Realiza a comunicação entre as requisições e o serviço de criação de 
+   * Método Construtor.
+   * @param createCategoryService CreateCategoryService
+   */
+  constructor(private createCategoryService: CreateCategoryService) {}
+
+  /**
+   * Realiza a comunicação entre as requisições e o serviço de criação de
    * categoria.
    * @param request Request
    * @param response Response
@@ -13,9 +19,7 @@ class CreateCategoryController {
   async handle(request: Request, response: Response) {
     const { name } = request.body;
 
-    const createCategoryService = new CreateCategoryService();
-
-    const category = await createCategoryService.execute({ name });
+    const category = await this.createCategoryService.execute({ name });
 
     return response.json(category);
   }
