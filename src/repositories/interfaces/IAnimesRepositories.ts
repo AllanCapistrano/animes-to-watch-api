@@ -4,7 +4,7 @@ interface IAnimesRepositories {
   /**
    * Procura um anime pelo nome.
    * @param name string
-   * @returns Anime
+   * @returns Promise<Anime>
    */
   findByName(name: string): Promise<Anime>;
 
@@ -14,7 +14,7 @@ interface IAnimesRepositories {
    * @param image string
    * @param url string
    * @param description string | null
-   * @returns Anime
+   * @returns Promise<Anime>
    */
   createAndSave(
     name: string,

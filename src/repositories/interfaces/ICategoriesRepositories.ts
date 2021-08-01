@@ -4,7 +4,7 @@ interface ICategoriesRepositories {
   /**
    * Procura uma categoria pelo nome.
    * @param name string
-   * @returns Category
+   * @returns Promise<Category>
    */
   findByName(name: string): Promise<Category>;
 
@@ -12,7 +12,7 @@ interface ICategoriesRepositories {
    * Cria uma categoria com a primeira letra de cada palavra em
    * caixa alta, e salva-a.
    * @param name string
-   * @returns Category
+   * @returns Promise<Category>
    */
   createAndSave(name: string): Promise<Category>;
 

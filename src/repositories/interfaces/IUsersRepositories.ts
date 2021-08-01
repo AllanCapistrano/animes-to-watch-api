@@ -4,7 +4,7 @@ interface IUsersRepositories {
   /**
    * Procura um usuário cadastrado pelo email.
    * @param email string
-   * @returns User
+   * @returns Promise<User>
    */
   findByEmail(email: string): Promise<User>;
 
@@ -14,7 +14,7 @@ interface IUsersRepositories {
    * @param email string
    * @param password string
    * @param avatar string | null
-   * @returns User
+   * @returns Promise<User>
    */
   createAndSave(
     name: string,

@@ -11,7 +11,7 @@ class CategoriesRepositories
   /**
    * Procura uma categoria pelo nome.
    * @param name string
-   * @returns Category
+   * @returns Promise<Category>
    */
   async findByName(name: string): Promise<Category> {
     const nameSplited = name.toLowerCase().split(" ");
@@ -30,7 +30,7 @@ class CategoriesRepositories
    * Cria uma categoria com a primeira letra de cada palavra em
    * caixa alta, e salva no Banco de Dados.
    * @param name string
-   * @returns Category
+   * @returns Promise<Category>
    */
   async createAndSave(name: string): Promise<Category> {
     const nameSplited = name.toLowerCase().split(" ");

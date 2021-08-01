@@ -11,7 +11,7 @@ class AnimesRepositories
   /**
    * Procura um anime pelo nome.
    * @param name string
-   * @returns Anime
+   * @returns Promise<Anime>
    */
   async findByName(name: string): Promise<Anime> {
     return await this.findOne({ name });
@@ -23,7 +23,7 @@ class AnimesRepositories
    * @param image string | null
    * @param url string
    * @param description string | null
-   * @returns Anime
+   * @returns Promise<Anime>
    */
   async createAndSave(
     name: string,

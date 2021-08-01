@@ -8,7 +8,7 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
   /**
    * Procura um usuário cadastrado pelo email.
    * @param email string
-   * @returns User
+   * @returns Promise<User>
    */
   async findByEmail(email: string): Promise<User> {
     /**
@@ -25,7 +25,7 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
    * @param email string
    * @param password string
    * @param avatar string
-   * @returns User
+   * @returns Promise<User>
    */
   async createAndSave(
     name: string,
