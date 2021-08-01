@@ -1,8 +1,6 @@
-import { getCustomRepository } from "typeorm";
-
-import { AnimesRepositories } from "../repositories/AnimesRepositories";
-import { AnimesCategoriesRepositories } from "../repositories/AnimesCategoriesRepositories";
-import { CategoriesRepositories } from "../repositories/CategoriesRepositories";
+import { IAnimesRepositories } from "../repositories/interfaces/IAnimesRepositories";
+import { IAnimesCategoriesRepositories } from "../repositories/interfaces/IAnimesCategoriesRepositories";
+import { ICategoriesRepositories } from "../repositories/interfaces/ICategoriesRepositories";
 
 interface IAnime {
   name: string;
@@ -13,6 +11,18 @@ interface IAnime {
 }
 
 class CreateAnimeService {
+  /**
+   * Método construtor.
+   * @param animesRepositories IAnimesRepositories.
+   * @param categoriesRepositories ICategoriesRepositories
+   * @param animesCategoriesRepositories IAnimesCategoriesRepositories
+   */
+  constructor(
+    private animesRepositories: IAnimesRepositories,
+    private categoriesRepositories: ICategoriesRepositories,
+    private animesCategoriesRepositories: IAnimesCategoriesRepositories
+  ) {}
+
   /**
    * Cria um anime e seus relacionamentos no Banco de Daos.
    * @param anime Anime
@@ -25,9 +35,7 @@ class CreateAnimeService {
     description = null,
     categories,
   }: IAnime) {
-    const animesRepositories = getCustomRepository(AnimesRepositories);
-
-    const animeAlreadyExists = await animesRepositories.findByName(name);
+    const animeAlreadyExists = await this.animesRepositories.findByName(name);
 
     if (animeAlreadyExists) {
       throw new Error("Anime já cadastrado! Tente novamente.");
@@ -39,23 +47,19 @@ class CreateAnimeService {
       );
     }
 
-    const categoriesRepositories = getCustomRepository(CategoriesRepositories);
-
     /**
      * Procurando no Banco de Dados a(s) categoria(s) enviada(s) na requisição,
      * para realizar a validação.
      */
-    const categoriesInDB = await categoriesRepositories.findByIds(categories);
+    const categoriesInDB = await this.categoriesRepositories.findMultiples(
+      categories
+    );
 
     if (categories.length != categoriesInDB.length) {
       throw new Error("Categoria(s) inválida(s)! Tente novamente.");
     }
 
-    const animesCategoriesRepositories = getCustomRepository(
-      AnimesCategoriesRepositories
-    );
-
-    const anime = await animesRepositories.createAndSave(
+    const anime = await this.animesRepositories.createAndSave(
       name,
       image,
       url,
@@ -65,7 +69,7 @@ class CreateAnimeService {
     /**
      * Criando os relacionanmentos do anime cadastrado.
      */
-    await animesCategoriesRepositories.createAndSave(categories, anime.id);
+    await this.animesCategoriesRepositories.createAndSave(categories, anime.id);
 
     return anime;
   }

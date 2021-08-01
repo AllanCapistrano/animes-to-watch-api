@@ -4,6 +4,12 @@ import { CreateAnimeService } from "../services/CreateAnimeService";
 
 class CreateAnimeController {
   /**
+   * Método construtor.
+   * @param createAnimeService CreateAnimeService
+   */
+  constructor(private createAnimeService: CreateAnimeService) {}
+
+  /**
    * Realiza a comunicação entre as requisições e o serviço de criação de
    * anime.
    * @param request Request
@@ -13,9 +19,7 @@ class CreateAnimeController {
   async handle(request: Request, response: Response) {
     const { name, image, url, description, categories } = request.body;
 
-    const createAnimeService = new CreateAnimeService();
-
-    const anime = await createAnimeService.execute({
+    const anime = await this.createAnimeService.execute({
       name,
       image,
       url,
