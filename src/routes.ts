@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 
 import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
-import { CreateCategoryController } from "./controllers/CreateCategoryController";
+import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 import { CreateAnimeController } from "./controllers/CreateAnimeController";
 
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
@@ -14,11 +14,6 @@ const router = Router();
  * User Controllers.
  */
 const authenticateUserController = new AuthenticateUserController();
-
-/**
- * Category Controllers.
- */
-const createCategoryController = new CreateCategoryController();
 
 /**
  * Anime Controllers.
@@ -52,7 +47,8 @@ router.post("/login", authenticateUserController.handle);
 router.post(
   "/categories/create",
   ensureAuthenticated,
-  createCategoryController.handle
+  (request: Request, response: Response) =>
+    createCategoryFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
