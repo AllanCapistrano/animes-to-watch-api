@@ -1,20 +1,15 @@
 import { Request, Response, Router } from "express";
 
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
+
 import { createUserFactory } from "./factories/User/CreateUserFactory";
-import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
+import { authenticateUserFactory } from "./factories/User/AuthenticateUserFactory";
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 import { CreateAnimeController } from "./controllers/CreateAnimeController";
-
-import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 const router = Router();
 
 /* --------------------------- Controllers ---------------------------------- */
-/**
- * User Controllers.
- */
-const authenticateUserController = new AuthenticateUserController();
-
 /**
  * Anime Controllers.
  */
@@ -37,7 +32,9 @@ router.post("/users/register", (request: Request, response: Response) =>
 /**
  * Rota para autenticação de usuário.
  */
-router.post("/login", authenticateUserController.handle);
+router.post("/login", (request: Request, response: Response) =>
+  authenticateUserFactory().handle(request, response)
+);
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Category ----------------------------------- */
