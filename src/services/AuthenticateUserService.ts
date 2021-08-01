@@ -1,11 +1,10 @@
 import { readFileSync } from "fs";
 
-import { getCustomRepository } from "typeorm";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { validate } from "email-validator";
 
-import { UsersRepositories } from "../repositories/UsersRepositories";
+import { IUsersRepositories } from "../repositories/interfaces/IUsersRepositories";
 
 interface IAuthenticateUser {
   email: string;
@@ -14,27 +13,31 @@ interface IAuthenticateUser {
 
 class AuthenticateUserService {
   /**
+   * Método construtor.
+   * @param usersRepositories IUsersRepositories
+   */
+  constructor(private usersRepositories: IUsersRepositories) {}
+
+  /**
    * Realiza a autenticação do usuário.
    * @param user User
    * @returns string
    */
   async execute({ email, password }: IAuthenticateUser) {
-    const usersRepositories = getCustomRepository(UsersRepositories);
-
     if (!validate(email)) {
       throw new Error("Email inválido! Tente novamente.");
     }
 
-    const user = await usersRepositories.findOne({ email });
+    const user = await this.usersRepositories.findByEmail(email);
 
     if (!user) {
-      throw new Error("Email/Password incorretos! Tente Novamente.");
+      throw new Error("Email/Senha incorretos! Tente Novamente.");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Email/Password incorretos! Tente Novamente.");
+      throw new Error("Email/Senha incorretos! Tente Novamente.");
     }
 
     /**
