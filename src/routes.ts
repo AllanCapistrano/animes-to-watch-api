@@ -5,16 +5,9 @@ import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { authenticateUserFactory } from "./factories/User/AuthenticateUserFactory";
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
-import { CreateAnimeController } from "./controllers/CreateAnimeController";
+import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 
 const router = Router();
-
-/* --------------------------- Controllers ---------------------------------- */
-/**
- * Anime Controllers.
- */
-const createAnimeController = new CreateAnimeController();
-/* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Routes ------------------------------------- */
 router.get("/", (request: Request, response: Response) => {
@@ -56,7 +49,8 @@ router.post(
 router.post(
   "/animes/create",
   ensureAuthenticated,
-  createAnimeController.handle
+  (request: Request, response: Response) =>
+    createAnimeFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
