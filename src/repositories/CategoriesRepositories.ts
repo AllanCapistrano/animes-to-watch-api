@@ -46,6 +46,15 @@ class CategoriesRepositories
       await this.create({ name: nameFirstLetrterUpperCase.join(" ") })
     );
   }
+
+  /**
+   * Retorna todas as categorias cujos IDs foram passados.
+   * @param categories string[]
+   * @returns Promise<Category[]>
+   */
+  async findMultiples(categories: string[]): Promise<Category[]> {
+    return await this.findByIds(categories);
+  }
 }
 
 export { CategoriesRepositories };

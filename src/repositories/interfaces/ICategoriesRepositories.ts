@@ -15,6 +15,13 @@ interface ICategoriesRepositories {
    * @returns Category
    */
   createAndSave(name: string): Promise<Category>;
+
+  /**
+   * Retorna todas as categorias cujos IDs foram passados.
+   * @param categories string[]
+   * @returns Promise<Category[]>
+   */
+  findMultiples(categories: string[]): Promise<Category[]>;
 }
 
 export { ICategoriesRepositories };
