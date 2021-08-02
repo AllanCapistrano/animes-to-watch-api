@@ -7,7 +7,7 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
   /**
    * Procura um usuário pelo email.
    * @param email string
-   * @returns User
+   * @returns Promise<User>
    */
   async findByEmail(email: string): Promise<User> {
     let user: User | null = null;
@@ -28,7 +28,7 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
    * @param email string
    * @param password string
    * @param avatar string | null
-   * @returns User
+   * @returns Promise<User>
    */
   async createAndSave(
     name: string,
