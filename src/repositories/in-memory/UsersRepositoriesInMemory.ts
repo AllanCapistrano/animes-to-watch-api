@@ -5,12 +5,12 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
   private users: User[] = [];
 
   /**
-   * Procura um usuário cadastrado pelo email.
+   * Procura um usuário pelo email.
    * @param email string
    * @returns User
    */
   async findByEmail(email: string): Promise<User> {
-    let user = null;
+    let user: User | null = null;
 
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].email === email) {
@@ -36,7 +36,7 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
     password: string,
     avatar: string
   ): Promise<User> {
-    let user = new User();
+    let user: User = new User();
 
     user.name = name;
     user.email = email;
