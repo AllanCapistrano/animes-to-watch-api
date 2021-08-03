@@ -4,7 +4,10 @@ import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { authenticateUserFactory } from "./factories/User/AuthenticateUserFactory";
+import { forgotPasswordFactory } from "./factories/User/ForgotPasswordFactory";
+
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
+
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 
 const router = Router();
@@ -27,6 +30,13 @@ router.post("/users/register", (request: Request, response: Response) =>
  */
 router.post("/login", (request: Request, response: Response) =>
   authenticateUserFactory().handle(request, response)
+);
+
+/**
+ * Rota para alterar a senha quando o usuáio não lembra da mesma.
+ */
+router.put("/forgot-password", (request: Request, response: Response) =>
+  forgotPasswordFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
