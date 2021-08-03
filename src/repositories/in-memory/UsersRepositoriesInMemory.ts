@@ -2,6 +2,8 @@ import { IUsersRepositories } from "../interfaces/IUsersRepositories";
 import { User } from "../../entities/User";
 
 class UsersRepositoriesInMemory implements IUsersRepositories {
+  private users: User[] = [];
+
   /**
    * Procura um usuário pelo email.
    * @param email string
@@ -47,7 +49,7 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
   }
 
   /**
-   * Altera a senha do usuário 
+   * Altera a senha do usuário
    * @param user User
    * @param password string
    * @returns Promise<boolean>
@@ -63,7 +65,6 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
 
     return false;
   }
-  private users: User[] = [];
 }
 
 export { UsersRepositoriesInMemory };
