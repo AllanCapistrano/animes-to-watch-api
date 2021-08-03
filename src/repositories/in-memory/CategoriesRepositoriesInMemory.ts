@@ -44,7 +44,7 @@ class CategoriesRepositoriesInMemory implements ICategoriesRepositories {
    * @returns Promise<Category[]>
    */
   async findMultiples(categories: string[]): Promise<Category[]> {
-    let categoriesInMemory: Category[] = null;
+    let categoriesInMemory: Category[] = [];
 
     for (let i = 0; i < this.categories.length; i++) {
       for (let j = 0; j < categories.length; j++) {
