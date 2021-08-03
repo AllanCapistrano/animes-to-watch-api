@@ -2,8 +2,6 @@ import { IUsersRepositories } from "../interfaces/IUsersRepositories";
 import { User } from "../../entities/User";
 
 class UsersRepositoriesInMemory implements IUsersRepositories {
-  private users: User[] = [];
-
   /**
    * Procura um usuário pelo email.
    * @param email string
@@ -47,6 +45,25 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
 
     return user;
   }
+
+  /**
+   * Altera a senha do usuário 
+   * @param user User
+   * @param password string
+   * @returns Promise<boolean>
+   */
+  async changePassword(user: User, password: string): Promise<boolean> {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === user.id) {
+        this.users[i].password = password;
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+  private users: User[] = [];
 }
 
 export { UsersRepositoriesInMemory };
