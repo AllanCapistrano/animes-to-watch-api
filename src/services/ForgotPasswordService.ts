@@ -33,12 +33,12 @@ class ForgotPasswordService {
 
     const passwordHash = await hash(newPassword, 8);
 
-    const isUserUpdated = await this.userRepository.changePassword(
+    const isPasswordUpdated = await this.userRepository.changePassword(
       user,
       passwordHash
     );
 
-    return isUserUpdated;
+    return isPasswordUpdated;
   }
 }
 
