@@ -44,6 +44,24 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
 
     return user;
   }
+
+  /**
+   * Altera a senha do usuário no Banco de Dados.
+   * @param user User
+   * @param password string
+   * @returns Promise<boolean>
+   */
+  async changePassword(user: User, password: string): Promise<boolean> {
+    const userUpdated = await this.save({
+      ...user,
+      password,
+    });
+
+    /**
+     * Forçar o retorno ser do tipo boolean.
+     */
+    return !!userUpdated;
+  }
 }
 
 export { UsersRepositories };

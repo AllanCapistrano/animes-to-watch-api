@@ -22,6 +22,14 @@ interface IUsersRepositories {
     password: string,
     avatar: string | null
   ): Promise<User>;
+
+  /**
+   * Altera a senha o usuário.
+   * @param user User
+   * @param password string
+   * @returns Promise<boolean>
+   */
+  changePassword(user: User, password: string): Promise<boolean>;
 }
 
 export { IUsersRepositories };
