@@ -1,7 +1,7 @@
 import { ICategoriesRepositories } from "../interfaces/ICategoriesRepositories";
 import { Category } from "../../entities/Category";
 
-class CategoriesrepositoriesInMemory implements ICategoriesRepositories {
+class CategoriesRepositoriesInMemory implements ICategoriesRepositories {
   private categories: Category[] = [];
 
   /**
@@ -60,4 +60,4 @@ class CategoriesrepositoriesInMemory implements ICategoriesRepositories {
   }
 }
 
-export { CategoriesrepositoriesInMemory };
+export { CategoriesRepositoriesInMemory };
