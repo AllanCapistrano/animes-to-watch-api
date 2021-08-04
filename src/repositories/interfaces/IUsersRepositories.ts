@@ -30,6 +30,21 @@ interface IUsersRepositories {
    * @returns Promise<boolean>
    */
   changePassword(user: User, password: string): Promise<boolean>;
+
+  /**
+   * Verifica se o usuário está cadastrado.
+   * @param id string
+   * @param email string
+   * @returns Promise<User | boolean>
+   */
+  usersExists(id?: string, email?: string): Promise<User | false>;
+
+  /**
+   * Atualiza as informações do usuário.
+   * @param user User
+   * @returns Promise<User>
+   */
+  updateUser(user: User): Promise<User>;
 }
 
 export { IUsersRepositories };
