@@ -35,7 +35,7 @@ router.post("/login", (request: Request, response: Response) =>
 /**
  * Rota para alterar a senha quando o usuáio não lembra da mesma.
  */
-router.put("/forgot-password", (request: Request, response: Response) =>
+router.patch("/forgot-password", (request: Request, response: Response) =>
   forgotPasswordFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
