@@ -37,7 +37,7 @@ interface IUsersRepositories {
    * @param email string
    * @returns Promise<User | boolean>
    */
-  usersExists(id?: string, email?: string): Promise<User | false>;
+  userExists(id?: string, email?: string): Promise<User | false>;
 
   /**
    * Atualiza as informações do usuário.
