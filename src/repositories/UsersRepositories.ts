@@ -62,6 +62,33 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
      */
     return !!userUpdated;
   }
+
+  /**
+   * Verifica se o usuário existe no Banco de Dados.
+   * @param id string | null
+   * @param email string | null
+   * @returns Promise<User | boolean>
+   */
+  async userExists(id?: string, email?: string): Promise<User | false> {
+    if (id) {
+      return await this.findOne(id);
+    }
+
+    if (email) {
+      return await this.findByEmail(email);
+    }
+
+    return false;
+  }
+
+  /**
+   * Atualiza as informações do usuário no Banco de Dados.
+   * @param user User
+   * @returns Promise<User>
+   */
+  async updateUser(user: User): Promise<User> {
+    return await this.save(user);
+  }
 }
 
 export { UsersRepositories };
