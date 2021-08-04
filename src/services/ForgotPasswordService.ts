@@ -16,7 +16,7 @@ class ForgotPasswordService {
   constructor(private userRepository: IUsersRepositories) {}
 
   /**
-   * Altera a senha do usuário no Bando de Dados.
+   * Altera a senha do usuário.
    * @param user User
    * @returns Promise<boolean>
    */

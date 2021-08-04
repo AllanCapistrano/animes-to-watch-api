@@ -24,7 +24,7 @@ class CreateAnimeService {
   ) {}
 
   /**
-   * Cria um anime e seus relacionamentos no Banco de Daos.
+   * Cria um anime.
    * @param anime Anime
    * @returns JSON
    */

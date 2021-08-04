@@ -18,7 +18,7 @@ class CreateUserService {
   constructor(private userRepository: IUsersRepositories) {}
 
   /**
-   * Cria um novo usuário no Banco de Dados.
+   * Cria um novo usuário.
    * @param user User
    * @returns User
    */

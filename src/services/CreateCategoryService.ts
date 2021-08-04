@@ -12,7 +12,7 @@ class CreateCategoryService {
   constructor(private categoriesRepositories: ICategoriesRepositories) {}
 
   /**
-   * Cria uma nova categoria no Banco de Dados.
+   * Cria uma nova categoria.
    * @param category Category
    * @returns Category
    */
