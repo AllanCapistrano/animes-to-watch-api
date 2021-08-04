@@ -5,6 +5,7 @@ import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { authenticateUserFactory } from "./factories/User/AuthenticateUserFactory";
 import { forgotPasswordFactory } from "./factories/User/ForgotPasswordFactory";
+import { updateUserFactory } from "./factories/User/UpdateUserFactory";
 
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 
@@ -37,6 +38,16 @@ router.post("/login", (request: Request, response: Response) =>
  */
 router.patch("/forgot-password", (request: Request, response: Response) =>
   forgotPasswordFactory().handle(request, response)
+);
+
+/**
+ * Rota para atualização das informações do usuário.
+ */
+router.put(
+  "/users/update",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    updateUserFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
