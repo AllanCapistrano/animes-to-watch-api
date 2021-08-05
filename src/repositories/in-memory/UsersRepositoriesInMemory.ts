@@ -65,6 +65,41 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
 
     return false;
   }
+
+  /**
+   * Verifica se o usuário existe.
+   * @param id string
+   * @param email string
+   * @returns Promise<false | User>
+   */
+  async userExists(id?: string, email?: string): Promise<false | User> {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === id) {
+        return this.users[i];
+      }
+
+      if (this.users[i].email === email) {
+        return this.users[i];
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Atualiza as informações do usuário.
+   * @param user User
+   * @returns Promise<User>
+   */
+  async updateUser(user: User): Promise<User> {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === user.id) {
+        this.users[i] = user;
+
+        return this.users[i];
+      }
+    }
+  }
 }
 
 export { UsersRepositoriesInMemory };
