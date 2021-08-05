@@ -67,7 +67,7 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
    * Verifica se o usuário existe no Banco de Dados.
    * @param id string | null
    * @param email string | null
-   * @returns Promise<User | boolean>
+   * @returns Promise<false | User>
    */
   async userExists(id?: string, email?: string): Promise<User | false> {
     if (id) {
