@@ -48,6 +48,42 @@ class AnimesRepositoriesInMemory implements IAnimesRepositories {
 
     return anime;
   }
+
+  /**
+   * Verifica se o anime já está cadastrado.
+   * @param id string | null
+   * @param name string
+   * @returns Promise<false | Anime>
+   */
+  async animeExists(id: string, name?: string): Promise<false | Anime> {
+    let anime: Anime | boolean = false;
+
+    if (id) {
+      for (let i = 0; i < this.animes.length; i++) {
+        if (this.animes[i].id === id) {
+          anime = this.animes[i];
+
+          break;
+        }
+      }
+
+      return anime;
+    }
+
+    if (name) {
+      for (let i = 0; i < this.animes.length; i++) {
+        if (this.animes[i].name === name) {
+          anime = this.animes[i];
+
+          break;
+        }
+      }
+
+      return anime;
+    }
+
+    return false;
+  }
 }
 
 export { AnimesRepositoriesInMemory };
