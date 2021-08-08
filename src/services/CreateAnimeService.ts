@@ -35,7 +35,7 @@ class CreateAnimeService {
     description = null,
     categories,
   }: IAnime) {
-    const animeAlreadyExists = await this.animesRepositories.findByName(name);
+    const animeAlreadyExists = await this.animesRepositories.animeExists(null, name);
 
     if (animeAlreadyExists) {
       throw new Error("Anime já cadastrado! Tente novamente.");
