@@ -33,11 +33,11 @@ interface IUsersRepositories {
 
   /**
    * Verifica se o usuário está cadastrado.
-   * @param id string
+   * @param id string | null
    * @param email string
    * @returns Promise<User | boolean>
    */
-  userExists(id?: string, email?: string): Promise<User | false>;
+  userExists(id: string | null, email?: string): Promise<User | false>;
 
   /**
    * Atualiza as informações do usuário.
