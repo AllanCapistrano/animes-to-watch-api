@@ -30,7 +30,7 @@ class CreateUserService {
       throw new Error("Email inválido! Tente novamente.");
     }
 
-    const userAlreadyExists = await this.userRepository.findByEmail(email);
+    const userAlreadyExists = await this.userRepository.userExists(null, email);
 
     /**
      * Verifica se o usuário já está cadastrado (email é único).
