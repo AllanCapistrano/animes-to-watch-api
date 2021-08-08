@@ -7,7 +7,7 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 
 ### 🧑 Usuário: ###
 - [x] Criação
-- [ ] Edição
+- [x] Edição
 - [ ] Remoção
 - [x] Esqueceu a senha
 
@@ -27,6 +27,7 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 
 ### 🔐 Autenticação: ###
 - [x] Login
+- [x] Edição de usuário
 - [x] Criação de animes
 - [x] Criação de categorias
 - [ ] Edição de animes
