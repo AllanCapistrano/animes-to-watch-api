@@ -42,6 +42,24 @@ class AnimesRepositories
 
     return anime;
   }
+
+  /**
+   * Verifica se o anime existe no Banco de Dados.
+   * @param id string | null
+   * @param name string
+   * @returns Promise<Anime | false>
+   */
+  async animeExists(id: string | null, name?: string): Promise<Anime | false> {
+    if (id) {
+      return await this.findOne(id);
+    }
+
+    if (name) {
+      return await this.findByName(name);
+    }
+
+    return false;
+  }
 }
 
 export { AnimesRepositories };

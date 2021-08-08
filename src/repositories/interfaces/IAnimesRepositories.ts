@@ -22,6 +22,14 @@ interface IAnimesRepositories {
     url: string,
     description: string | null
   ): Promise<Anime>;
+
+  /**
+   * Verifica se o anime está cadastrado.
+   * @param id string | null
+   * @param name string
+   * @returns Promise<Anime | false>
+   */
+  animeExists(id: string | null, name?: string): Promise<Anime | false>;
 }
 
 export { IAnimesRepositories };
