@@ -30,6 +30,22 @@ class AnimesCategoriesRepositories
       await this.save(animeCategory);
     });
   }
+
+  /**
+   * Retorna os IDs das categorias relacionadas com o anime passado.
+   * @param animeId string
+   * @returns Promise<string[]>
+   */
+  async categoriesIds(animeId: string): Promise<string[]> {
+    const animesCategories = await this.find({ animeId });
+    let categoriesIds: string[] = [];
+
+    animesCategories.forEach((animeCategory) => {
+      categoriesIds.push(animeCategory.categoryId);
+    });
+
+    return categoriesIds;
+  }
 }
 
 export { AnimesCategoriesRepositories };
