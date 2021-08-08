@@ -10,6 +10,7 @@ import { updateUserFactory } from "./factories/User/UpdateUserFactory";
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
+import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
 
 const router = Router();
 
@@ -72,6 +73,16 @@ router.post(
   ensureAuthenticated,
   (request: Request, response: Response) =>
     createAnimeFactory().handle(request, response)
+);
+
+/**
+ * Rota para alterar as informações de um anime.
+ */
+router.put(
+  "/animes/update",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    updateAnimeFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
