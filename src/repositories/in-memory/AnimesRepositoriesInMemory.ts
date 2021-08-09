@@ -84,6 +84,23 @@ class AnimesRepositoriesInMemory implements IAnimesRepositories {
 
     return false;
   }
+
+  /**
+   * Atualiza as informações de um anime.
+   * @param anime Anime
+   * @returns Promise<Anime>
+   */
+  async updateAnime(anime: Anime): Promise<Anime> {
+    for (var i = 0; i < this.animes.length; i++) {
+      if (this.animes[i].id === anime.id) {
+        this.animes[i] = anime;
+
+        break;
+      }
+    }
+
+    return this.animes[i];
+  }
 }
 
 export { AnimesRepositoriesInMemory };
