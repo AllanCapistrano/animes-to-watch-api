@@ -28,11 +28,13 @@ describe("Update user", () => {
   });
 
   it("Should be able to update user information", async () => {
-    user.name = "Test new name";
-    user.email = "new_email@example.com";
-    user.password = "newpassword";
+    const userData = {
+      name: "Test new name",
+      email: "new_email@example.com",
+      password: "newpassword",
+    };
 
-    await updateUserService.execute(user);
+    await updateUserService.execute({ ...user, ...userData });
 
     const passwordMatch = await compare("newpassword", user.password);
 
@@ -46,23 +48,29 @@ describe("Update user", () => {
   });
 
   it("Should not be able to update user information with an invalid email address", async () => {
-    user.email = "new_emailexample.com";
+    const userData = [
+      {
+        email: "new_emailexample.com",
+      },
+      {
+        email: "new_email@examplecom",
+      },
+      {
+        email: "new_email@example",
+      },
+    ];
 
-    await expect(updateUserService.execute(user)).rejects.toEqual(
-      new Error("Email inválido! Tente novamente.")
-    );
+    await expect(
+      updateUserService.execute({ ...user, ...userData[0] })
+    ).rejects.toEqual(new Error("Email inválido! Tente novamente."));
 
-    user.email = "new_email@examplecom";
+    await expect(
+      updateUserService.execute({ ...user, ...userData[1] })
+    ).rejects.toEqual(new Error("Email inválido! Tente novamente."));
 
-    await expect(updateUserService.execute(user)).rejects.toEqual(
-      new Error("Email inválido! Tente novamente.")
-    );
-
-    user.email = "new_email@example";
-
-    await expect(updateUserService.execute(user)).rejects.toEqual(
-      new Error("Email inválido! Tente novamente.")
-    );
+    await expect(
+      updateUserService.execute({ ...user, ...userData[2] })
+    ).rejects.toEqual(new Error("Email inválido! Tente novamente."));
   });
 
   it("Should not be able to change a non-existent user's information", async () => {
