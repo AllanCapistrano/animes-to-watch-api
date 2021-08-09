@@ -71,7 +71,6 @@ class UpdateAnimeService {
     anime.url = url;
     anime.description = description;
 
-    // const animeUpdated = await this.animesRepositories.save(anime);
     const animeUpdated = await this.animesRepositories.updateAnime(anime);
     const categoriesIds = await this.animesCategoriesRepositories.categoriesIds(
       id
