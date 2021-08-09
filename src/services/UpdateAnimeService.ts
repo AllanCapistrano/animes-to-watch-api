@@ -1,6 +1,6 @@
-import { AnimesRepositories } from "../repositories/AnimesRepositories";
-import { CategoriesRepositories } from "../repositories/CategoriesRepositories";
-import { AnimesCategoriesRepositories } from "../repositories/AnimesCategoriesRepositories";
+import { IAnimesRepositories } from "../repositories/interfaces/IAnimesRepositories";
+import { ICategoriesRepositories } from "../repositories/interfaces/ICategoriesRepositories";
+import { IAnimesCategoriesRepositories } from "../repositories/interfaces/IAnimesCategoriesRepositories";
 import { hasDifferentCategories } from "../providers/HasDifferentCategories";
 
 interface IAnime {
@@ -15,14 +15,14 @@ interface IAnime {
 class UpdateAnimeService {
   /**
    * Método construtor.
-   * @param animesRepositories AnimeRepositories
-   * @param categoriesRepositories CategoriesRepositories
-   * @param animesCategoriesRepositories AnimesCategoriesRepositories
+   * @param animesRepositories IAnimesRepositories
+   * @param categoriesRepositories ICategoriesRepositories
+   * @param animesCategoriesRepositories IAnimesCategoriesRepositories
    */
   constructor(
-    private animesRepositories: AnimesRepositories,
-    private categoriesRepositories: CategoriesRepositories,
-    private animesCategoriesRepositories: AnimesCategoriesRepositories
+    private animesRepositories: IAnimesRepositories,
+    private categoriesRepositories: ICategoriesRepositories,
+    private animesCategoriesRepositories: IAnimesCategoriesRepositories
   ) {}
 
   /**
@@ -44,7 +44,7 @@ class UpdateAnimeService {
       throw new Error("Anime não encontrado! Tente novamente.");
     }
 
-    const invalidAnimeName = await this.animesRepositories.findOne({ name });
+    const invalidAnimeName = await this.animesRepositories.findByName(name);
 
     if (invalidAnimeName && invalidAnimeName.id !== id) {
       throw new Error(
@@ -71,7 +71,8 @@ class UpdateAnimeService {
     anime.url = url;
     anime.description = description;
 
-    const animeUpdated = await this.animesRepositories.save(anime);
+    // const animeUpdated = await this.animesRepositories.save(anime);
+    const animeUpdated = await this.animesRepositories.updateAnime(anime);
     const categoriesIds = await this.animesCategoriesRepositories.categoriesIds(
       id
     );
@@ -80,7 +81,7 @@ class UpdateAnimeService {
      * Caso alguma categoria seja modificada.
      */
     if (hasDifferentCategories(categories, categoriesIds)) {
-      await this.animesCategoriesRepositories.delete({ animeId: id });
+      await this.animesCategoriesRepositories.removeAnimeCategory(id);
 
       await this.animesCategoriesRepositories.createAndSave(categories, id);
     }
