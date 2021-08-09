@@ -30,6 +30,13 @@ interface IAnimesRepositories {
    * @returns Promise<Anime | false>
    */
   animeExists(id: string | null, name?: string): Promise<Anime | false>;
+
+  /**
+   * Atualiza as informações de um anime.
+   * @param anime Anime
+   * @return Promise<Anime>
+   */
+  updateAnime(anime: Anime): Promise<Anime>;
 }
 
 export { IAnimesRepositories };
