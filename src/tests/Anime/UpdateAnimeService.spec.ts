@@ -64,12 +64,18 @@ describe("Update anime", () => {
   });
 
   it("Should be able to update an anime", async () => {
-    anime[0].name = "Test New Name";
-    anime[0].image = null;
-    anime[0].url = "https://newimage.com/anime/0";
-    anime[0].description = null;
+    const animeData = {
+      name: "Test New Name",
+      image: null,
+      url: "https://newimage.com/anime/0",
+      description: null,
+    };
 
-    await updateAnimeService.execute({ ...anime[0], categories: [c0] });
+    await updateAnimeService.execute({
+      id: anime[0].id,
+      ...animeData,
+      categories: [c0],
+    });
 
     expect(anime[0].name).toBe("Test New Name");
 
@@ -80,36 +86,39 @@ describe("Update anime", () => {
     expect(anime[0].description).toBeNull();
   });
 
-  /**
-   * AINDA FALTA!!!
-   */
-  // it("Should not be able to update an anime name that already exists", async () => {
-  //   // console.log(anime)
-
-  //   anime[0].name = "Test1";
-  //   // anime[0].image = null;
-  //   // anime[0].url = "https://newimage.com/anime/0";
-  //   // anime[0].description = null;
-
-  //   // await expect(
-  //   //   updateAnimeService.execute({ name: anime[0].name, ...anime[0], categories: [c0] })
-  //   // ).rejects.toEqual(
-  //   //   new Error("Já existe um anime cadastrado com esse nome! Tente novamente.")
-  //   // );
-
-  //   await updateAnimeService.execute({ ...anime[0], categories: [c0] });
-
-  //   expect(anime[0].name).toBe("Test1");
-  // });
-
-  it("Should not be able to update an anime with empty categories", async () => {
-    anime[1].name = "New Name";
-    anime[1].image = null;
-    anime[1].url = "https://newimage.com/anime/1";
-    anime[1].description = null;
+  it("Should not be able to update an anime name that already exists", async () => {
+    const animeData = {
+      name: "Test1",
+      image: null,
+      url: "https://newimage.com/anime/0",
+      description: null,
+    };
 
     await expect(
-      updateAnimeService.execute({ ...anime[1], categories: [] })
+      updateAnimeService.execute({
+        id: anime[0].id,
+        ...animeData,
+        categories: [c0],
+      })
+    ).rejects.toEqual(
+      new Error("Já existe um anime cadastrado com esse nome! Tente novamente.")
+    );
+  });
+
+  it("Should not be able to update an anime with empty categories", async () => {
+    const animeData = {
+      name: "New Name",
+      image: null,
+      url: "https://newimage.com/anime/1",
+      description: null,
+    };
+
+    await expect(
+      updateAnimeService.execute({
+        id: anime[1].id,
+        ...animeData,
+        categories: [],
+      })
     ).rejects.toEqual(
       new Error(
         "Para a atualização de um anime é necessário uma ou mais categorias."
@@ -118,14 +127,17 @@ describe("Update anime", () => {
   });
 
   it("Should not be able to update an anime with invalid categories", async () => {
-    anime[1].name = "New Name";
-    anime[1].image = null;
-    anime[1].url = "https://newimage.com/anime/1";
-    anime[1].description = null;
+    const animeData = {
+      name: "New Name",
+      image: null,
+      url: "https://newimage.com/anime/1",
+      description: null,
+    };
 
     await expect(
       updateAnimeService.execute({
-        ...anime[1],
+        id: anime[1].id,
+        ...animeData,
         categories: [
           "9b954b24-fc5e-4927-8b45-4859c5b2b859",
           "e92dd749-a7c8-42c9-b56b-1dfda7920233",
