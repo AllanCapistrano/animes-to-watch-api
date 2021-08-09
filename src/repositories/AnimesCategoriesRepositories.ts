@@ -46,6 +46,15 @@ class AnimesCategoriesRepositories
 
     return categoriesIds;
   }
+
+  /**
+   * Remove um registro anime-category do Banco de Dados.
+   * @param animeId string
+   * @returns Promise<boolean>
+   */
+  async removeAnimeCategory(animeId: string): Promise<boolean> {
+    return !!(await this.delete({ animeId }));
+  }
 }
 
 export { AnimesCategoriesRepositories };
