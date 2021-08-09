@@ -60,6 +60,15 @@ class AnimesRepositories
 
     return false;
   }
+
+  /**
+   * Atualiza as informações de um anime no Banco de Dados.
+   * @param anime Anime
+   * @returns Promise<Anime>
+   */
+  async updateAnime(anime: Anime): Promise<Anime> {
+    return await this.save(anime);
+  }
 }
 
 export { AnimesRepositories };
