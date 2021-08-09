@@ -37,6 +37,23 @@ class AnimesCategoriesRepositoriesInMemory
 
     return categoriesIds;
   }
+
+  /**
+   * Remove um registro anime-category do Array.
+   * @param animeId string
+   * @returns Promise<boolean>
+   */
+  async removeAnimeCategory(animeId: string): Promise<boolean> {
+    let flag: boolean = false;
+
+    for (let i = 0; i < this.animesCategories.length; i++) {
+      if (this.animesCategories[i].animeId === animeId) {
+        flag = !!this.animesCategories.splice(i, 1);
+      }
+    }
+
+    return flag;
+  }
 }
 
 export { AnimesCategoriesRepositoriesInMemory };
