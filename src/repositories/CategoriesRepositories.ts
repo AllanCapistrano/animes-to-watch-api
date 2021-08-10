@@ -55,6 +55,33 @@ class CategoriesRepositories
   async findMultiples(categories: string[]): Promise<Category[]> {
     return await this.findByIds(categories);
   }
+
+  /**
+   * Verifica se a categoria já está cadastrada no Banco de Dados.
+   * @param id string | null
+   * @param name string
+   * @returns Promise<Category | false>
+   */
+  async categoryExists(id: string, name?: string): Promise<false | Category> {
+    if (id) {
+      return await this.findOne(id);
+    }
+
+    if (name) {
+      return await this.findByName(name);
+    }
+
+    return false;
+  }
+
+  /**
+   * Atualiza as informações de uma categoria no Banco de Dados.
+   * @param category Category
+   * @returns Promise<Category>
+   */
+  async updateCategory(category: Category): Promise<Category> {
+    return await this.save(category);
+  }
 }
 
 export { CategoriesRepositories };

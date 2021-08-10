@@ -22,6 +22,21 @@ interface ICategoriesRepositories {
    * @returns Promise<Category[]>
    */
   findMultiples(categories: string[]): Promise<Category[]>;
+
+  /**
+   * Verifica se a categoria já está cadastrada.
+   * @param id string
+   * @param name string
+   * @returns Promise<Category | false>
+   */
+  categoryExists(id: string, name?: string): Promise<Category | false>;
+
+  /**
+   * Atualiza as informações de uma categoria.
+   * @param category Category
+   * @returns Promise<Category>
+   */
+  updateCategory(category: Category): Promise<Category>;
 }
 
 export { ICategoriesRepositories };
