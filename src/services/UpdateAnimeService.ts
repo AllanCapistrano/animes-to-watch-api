@@ -26,7 +26,7 @@ class UpdateAnimeService {
   ) {}
 
   /**
-   * Atualiza as informações do anime no Banco de Dados.
+   * Atualiza as informações do anime.
    * @param anime Anime
    * @returns Promise<Anime>
    */
