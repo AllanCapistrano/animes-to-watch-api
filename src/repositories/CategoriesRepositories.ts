@@ -80,7 +80,19 @@ class CategoriesRepositories
    * @returns Promise<Category>
    */
   async updateCategory(category: Category): Promise<Category> {
-    return await this.save(category);
+    const nameSplited = category.name.toLowerCase().split(" ");
+
+    /**
+     * Colocando a primeira letra em caixa alta.
+     */
+    const nameFirstLetrterUpperCase = nameSplited.map((temp: string) => {
+      return temp.charAt(0).toUpperCase() + temp.slice(1);
+    });
+
+    return await this.save({
+      ...category,
+      name: nameFirstLetrterUpperCase.join(" "),
+    });
   }
 }
 
