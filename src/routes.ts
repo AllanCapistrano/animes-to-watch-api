@@ -8,6 +8,7 @@ import { forgotPasswordFactory } from "./factories/User/ForgotPasswordFactory";
 import { updateUserFactory } from "./factories/User/UpdateUserFactory";
 
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
+import { updateCategoryFactory } from "./factories/Category/UpdateCategoryFactory";
 
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
@@ -61,6 +62,13 @@ router.post(
   ensureAuthenticated,
   (request: Request, response: Response) =>
     createCategoryFactory().handle(request, response)
+);
+
+router.put(
+  "/categories/update",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    updateCategoryFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
