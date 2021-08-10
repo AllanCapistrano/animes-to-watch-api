@@ -17,9 +17,8 @@ class CreateCategoryService {
    * @returns Category
    */
   async execute({ name }: ICategory) {
-    const categoryAlreadyExists = await this.categoriesRepositories.findByName(
-      name
-    );
+    const categoryAlreadyExists =
+      await this.categoriesRepositories.categoryExists(null, name);
 
     /**
      * Verifica se a categoria já existe no Banco de Dados.
