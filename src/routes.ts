@@ -15,11 +15,8 @@ import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
 
 const router = Router();
 
-/* ----------------------------- Routes ------------------------------------- */
-router.get("/", (request: Request, response: Response) => {
-  return response.json({ data: "Hello World" }).status(200);
-});
-
+/* ============================== Routes ==================================== */
+//                                                                            //
 /* ------------------------------- User ------------------------------------- */
 /**
  * Rota para registro de novos usuários.
@@ -93,5 +90,7 @@ router.put(
     updateAnimeFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
+//                                                                            //
+/* ========================================================================== */
 
 export { router };
