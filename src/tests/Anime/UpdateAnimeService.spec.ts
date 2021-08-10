@@ -67,7 +67,7 @@ describe("Update anime", () => {
     const animeData = {
       name: "Test New Name",
       image: null,
-      url: "https://newimage.com/anime/0",
+      url: "https://newanime.com/anime/0",
       description: null,
     };
 
@@ -78,12 +78,16 @@ describe("Update anime", () => {
     });
 
     expect(anime[0].name).toBe("Test New Name");
+    expect(anime[1].name).toBe("Test1");
 
     expect(anime[0].image).toBeNull();
+    expect(anime[1].image).toBe("https://images.com/animes/1");
 
-    expect(anime[0].url).toBe("https://newimage.com/anime/0");
+    expect(anime[0].url).toBe("https://newanime.com/anime/0");
+    expect(anime[1].url).toBe("https://myanime.com/anime/1");
 
     expect(anime[0].description).toBeNull();
+    expect(anime[1].description).toBeNull();
   });
 
   it("Should not be able to update an anime name that already exists", async () => {
