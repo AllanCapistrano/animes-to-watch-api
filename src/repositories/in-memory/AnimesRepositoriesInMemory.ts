@@ -56,30 +56,22 @@ class AnimesRepositoriesInMemory implements IAnimesRepositories {
    * @returns Promise<false | Anime>
    */
   async animeExists(id: string, name?: string): Promise<false | Anime> {
-    let anime: Anime | boolean = false;
+    // let anime: Anime | boolean = false;
 
     if (id) {
       for (let i = 0; i < this.animes.length; i++) {
         if (this.animes[i].id === id) {
-          anime = this.animes[i];
-
-          break;
+          return this.animes[i];
         }
       }
-
-      return anime;
     }
 
     if (name) {
       for (let i = 0; i < this.animes.length; i++) {
         if (this.animes[i].name === name) {
-          anime = this.animes[i];
-
-          break;
+          return this.animes[i];
         }
       }
-
-      return anime;
     }
 
     return false;
@@ -95,11 +87,9 @@ class AnimesRepositoriesInMemory implements IAnimesRepositories {
       if (this.animes[i].id === anime.id) {
         this.animes[i] = anime;
 
-        break;
+        return this.animes[i];
       }
     }
-
-    return this.animes[i];
   }
 }
 
