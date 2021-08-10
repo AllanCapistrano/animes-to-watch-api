@@ -58,6 +58,47 @@ class CategoriesRepositoriesInMemory implements ICategoriesRepositories {
 
     return categoriesInMemory;
   }
+
+  /**
+   * Verifica se a categoria está cadastrada.
+   * @param id string | null
+   * @param name string
+   * @returns Promise<Category | false>
+   */
+  async categoryExists(id: string, name?: string): Promise<false | Category> {
+    if (id) {
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i].id === id) {
+          return this.categories[i];
+        }
+      }
+    }
+
+    if (name) {
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i].name === name) {
+          return this.categories[i];
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Atualiza as informações de uma categoria.
+   * @param category Category
+   * @returns Promise<Category>
+   */
+  async updateCategory(category: Category): Promise<Category> {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (this.categories[i].id === category.id) {
+        this.categories[i] = category;
+
+        return this.categories[i];
+      }
+    }
+  }
 }
 
 export { CategoriesRepositoriesInMemory };
