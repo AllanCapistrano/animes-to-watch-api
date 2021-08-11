@@ -89,6 +89,16 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
   async updateUser(user: User): Promise<User> {
     return await this.save(user);
   }
+
+  /**
+   * Remove um usuário o Banco de Dados.
+   * @param userId string | null
+   * @param email string
+   * @returns Promise<boolean>
+   */
+  async removeUser(user: User): Promise<boolean> {
+    return !!(await this.remove(user));
+  }
 }
 
 export { UsersRepositories };

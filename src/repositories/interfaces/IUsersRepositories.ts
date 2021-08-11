@@ -45,6 +45,13 @@ interface IUsersRepositories {
    * @returns Promise<User>
    */
   updateUser(user: User): Promise<User>;
+
+  /**
+   * Remove um usuário.
+   * @param user User
+   * @returns Promise<boolean>
+   */
+  removeUser(user: User): Promise<boolean>;
 }
 
 export { IUsersRepositories };
