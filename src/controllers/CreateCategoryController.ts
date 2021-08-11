@@ -21,7 +21,7 @@ class CreateCategoryController {
 
     const category = await this.createCategoryService.execute({ name });
 
-    return response.json(category);
+    return response.status(201).json(category);
   }
 }
 

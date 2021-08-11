@@ -27,7 +27,7 @@ class CreateAnimeController {
       categories,
     });
 
-    return response.json(anime);
+    return response.status(201).json(anime);
   }
 }
 
