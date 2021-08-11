@@ -100,6 +100,19 @@ class UsersRepositoriesInMemory implements IUsersRepositories {
       }
     }
   }
+
+  /**
+   * Remove um usuário.
+   * @param user User
+   * @returns Promise<boolean>
+   */
+  async removeUser(user: User): Promise<boolean> {
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].id === user.id) {
+        return !!this.users.splice(i, 1);
+      }
+    }
+  }
 }
 
 export { UsersRepositoriesInMemory };
