@@ -6,6 +6,7 @@ import { createUserFactory } from "./factories/User/CreateUserFactory";
 import { authenticateUserFactory } from "./factories/User/AuthenticateUserFactory";
 import { forgotPasswordFactory } from "./factories/User/ForgotPasswordFactory";
 import { updateUserFactory } from "./factories/User/UpdateUserFactory";
+import { removeUserFactory } from "./factories/User/RemoveUserFactory";
 
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 import { updateCategoryFactory } from "./factories/Category/UpdateCategoryFactory";
@@ -47,6 +48,16 @@ router.put(
   ensureAuthenticated,
   (request: Request, response: Response) =>
     updateUserFactory().handle(request, response)
+);
+
+/**
+ * Rota para remoção de usuário.
+ */
+router.delete(
+  "/users/delete",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    removeUserFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
