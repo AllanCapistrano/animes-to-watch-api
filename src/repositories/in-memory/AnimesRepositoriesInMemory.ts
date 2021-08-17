@@ -83,11 +83,24 @@ class AnimesRepositoriesInMemory implements IAnimesRepositories {
    * @returns Promise<Anime>
    */
   async updateAnime(anime: Anime): Promise<Anime> {
-    for (var i = 0; i < this.animes.length; i++) {
+    for (let i = 0; i < this.animes.length; i++) {
       if (this.animes[i].id === anime.id) {
         this.animes[i] = anime;
 
         return this.animes[i];
+      }
+    }
+  }
+
+  /**
+   * Remove um anime.
+   * @param anime Anime
+   * @returns Promise<boolean>
+   */
+  async removeAnime(anime: Anime): Promise<boolean> {
+    for (let i = 0; i < this.animes.length; i++) {
+      if (this.animes[i].id === anime.id) {
+        return !!this.animes.splice(i, 1);
       }
     }
   }
