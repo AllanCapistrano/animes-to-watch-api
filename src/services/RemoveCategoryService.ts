@@ -22,7 +22,7 @@ class RemoveCategoryService {
       const categoryExists = await this.categoryRepository.categoryExists(id);
 
       if (!categoryExists) {
-        throw new Error("Categoria não encontrada! Tente novamente.");
+        throw new Error("Categoria inválida! Tente novamente.");
       }
 
       return await this.categoryRepository.removeCategory(categoryExists);
@@ -35,7 +35,7 @@ class RemoveCategoryService {
       );
 
       if (!categoryExists) {
-        throw new Error("Categoria não encontrada! Tente novamente.");
+        throw new Error("Categoria inválida! Tente novamente.");
       }
 
       return await this.categoryRepository.removeCategory(categoryExists);
