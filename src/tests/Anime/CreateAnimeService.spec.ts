@@ -35,7 +35,7 @@ describe("Create anime", () => {
     categoriesIds.push(c2);
   });
 
-  it("Should be able to create a new anime", async () => {
+  it("Should be able to create a new anime.", async () => {
     const animeData = {
       name: "Anime0",
       image: "https://google.com/images/sample-image.png",
@@ -57,7 +57,7 @@ describe("Create anime", () => {
     expect(anime.description).toBeNull();
   });
 
-  it("Should not be able to create an existing anime", async () => {
+  it("Should not be able to create an existing anime.", async () => {
     const animeData = {
       name: "Anime1",
       image: "https://google.com/images/sample-image.png",
@@ -77,7 +77,7 @@ describe("Create anime", () => {
     );
   });
 
-  it("Should not be able to create an anime with no categories", async () => {
+  it("Should not be able to create an anime with no categories.", async () => {
     const animeData = {
       name: "Anime2",
       image: "https://google.com/images/sample-image.png",

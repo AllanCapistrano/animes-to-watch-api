@@ -27,7 +27,7 @@ describe("Update user", () => {
     user = await createUserService.execute(userData);
   });
 
-  it("Should be able to update user information", async () => {
+  it("Should be able to update user information.", async () => {
     const userData = {
       name: "Test new name",
       email: "new_email@example.com",
@@ -47,7 +47,7 @@ describe("Update user", () => {
     expect(passwordMatch).toBeTruthy();
   });
 
-  it("Should not be able to update user information with an invalid email address", async () => {
+  it("Should not be able to update user information with an invalid email address.", async () => {
     const userData = [
       {
         email: "new_emailexample.com",
@@ -73,7 +73,7 @@ describe("Update user", () => {
     ).rejects.toEqual(new Error("Email inválido! Tente novamente."));
   });
 
-  it("Should not be able to change a non-existent user's information", async () => {
+  it("Should not be able to change a non-existent user's information.", async () => {
     /**
      * Fake user ID.
      */

@@ -11,7 +11,7 @@ describe("Create category.", () => {
     createCategoryService = new CreateCategoryService(categoryRepository);
   });
 
-  it("Should be able to create a new category", async () => {
+  it("Should be able to create a new category.", async () => {
     const categoryData = {
       name: "Test0",
     };
@@ -23,7 +23,7 @@ describe("Create category.", () => {
     expect(category.name).toBe("Test0");
   });
 
-  it("Should not be able to create an existing category", async () => {
+  it("Should not be able to create an existing category.", async () => {
     const categoryData = {
       name: "Test1",
     };

@@ -13,7 +13,7 @@ describe("Create user", () => {
     createUserService = new CreateUserService(userRepository);
   });
 
-  it("Should be able to create a new user", async () => {
+  it("Should be able to create a new user.", async () => {
     const userData = {
       name: "Test0",
       email: "test0@example.com",
@@ -30,7 +30,7 @@ describe("Create user", () => {
     expect(user.email).toBe("test0@example.com");
   });
 
-  it("Should not be able to create a user with an invalid email address", async () => {
+  it("Should not be able to create a user with an invalid email address.", async () => {
     const userData = [
       {
         name: "Test1",
@@ -65,7 +65,7 @@ describe("Create user", () => {
     );
   });
 
-  it("Should be able to hash the password", async () => {
+  it("Should be able to hash the password.", async () => {
     const userData = {
       name: "Test4",
       email: "test4@example.com",
@@ -80,7 +80,7 @@ describe("Create user", () => {
     expect(passwordMatch).toBeTruthy();
   });
 
-  it("Should not be able to create an existing user", async () => {
+  it("Should not be able to create an existing user.", async () => {
     const userData = {
       name: "Test5",
       email: "test5@example.com",

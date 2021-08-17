@@ -31,7 +31,7 @@ describe("Authenticate user", () => {
     await createUserService.execute(user1ToCreate);
   });
 
-  it("Should be able to authenticate user", async () => {
+  it("Should be able to authenticate user.", async () => {
     const user0Data = {
       email: "user_0@test.com",
       password: "password123",
@@ -50,7 +50,7 @@ describe("Authenticate user", () => {
     expect(token1).not.toEqual("Email/Senha incorretos! Tente Novamente.");
   });
 
-  it("Should not be able to authenticate a user with an invalid email address", async () => {
+  it("Should not be able to authenticate a user with an invalid email address.", async () => {
     const user0Data = [
       {
         email: "user_0test.com",
@@ -79,7 +79,7 @@ describe("Authenticate user", () => {
     );
   });
 
-  it("Should not be able to authenticate a user with invalid credentials", async () => {
+  it("Should not be able to authenticate a user with invalid credentials.", async () => {
     /**
      * Invalid email.
      */

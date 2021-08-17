@@ -31,7 +31,7 @@ describe("Forgot password", () => {
     await createUserService.execute(user1ToCreate);
   });
 
-  it("Should be able to change user password", async () => {
+  it("Should be able to change user password.", async () => {
     const userData = {
       email: "user_1@test.com",
       newPassword: "789456123",
@@ -42,7 +42,7 @@ describe("Forgot password", () => {
     expect(isPasswordUpdated).toBeTruthy();
   });
 
-  it("Should not be able to change user password with an invalid email address", async () => {
+  it("Should not be able to change user password with an invalid email address.", async () => {
     const userData = [
       {
         email: "user_0test.com",
@@ -71,7 +71,7 @@ describe("Forgot password", () => {
     );
   });
 
-  it("Should not be able to change a non-existent user's password", async () => {
+  it("Should not be able to change a non-existent user's password.", async () => {
     const userData = {
       email: "not_a_user@example.com",
       newPassword: "password123",

@@ -63,7 +63,7 @@ describe("Update anime", () => {
     anime[1] = await createAnimeService.execute(anime1Data);
   });
 
-  it("Should be able to update an anime", async () => {
+  it("Should be able to update an anime.", async () => {
     const animeData = {
       name: "Test New Name",
       image: null,
@@ -90,7 +90,7 @@ describe("Update anime", () => {
     expect(anime[1].description).toBeNull();
   });
 
-  it("Should not be able to update an anime name that already exists", async () => {
+  it("Should not be able to update an anime name that already exists.", async () => {
     const animeData = {
       name: "Test1",
       image: null,
@@ -109,7 +109,7 @@ describe("Update anime", () => {
     );
   });
 
-  it("Should not be able to update an anime with empty categories", async () => {
+  it("Should not be able to update an anime with empty categories.", async () => {
     const animeData = {
       name: "New Name",
       image: null,
@@ -130,7 +130,7 @@ describe("Update anime", () => {
     );
   });
 
-  it("Should not be able to update an anime with invalid categories", async () => {
+  it("Should not be able to update an anime with invalid categories.", async () => {
     const animeData = {
       name: "New Name",
       image: null,

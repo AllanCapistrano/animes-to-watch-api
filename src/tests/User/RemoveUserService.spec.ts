@@ -39,11 +39,11 @@ describe("Remove a user", () => {
     users[2] = await createUserService.execute(userData[2]);
   });
 
-  it("Should be able to remove a user", async () => {
+  it("Should be able to remove a user.", async () => {
     await expect(removeUserService.execute({ id: users[1].id })).toBeTruthy();
   });
 
-  it("Should not be able to remove a non-existent user", async () => {
+  it("Should not be able to remove a non-existent user.", async () => {
     await removeUserService.execute({ id: users[0].id });
 
     await expect(

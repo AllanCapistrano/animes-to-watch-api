@@ -32,13 +32,13 @@ describe("Remove a category", () => {
     categories[2] = await createCategoryService.execute(categoriesData[2]);
   });
 
-  it("Should be able to remove a category", async () => {
+  it("Should be able to remove a category.", async () => {
     await expect(
       removeCategoryService.execute({ id: categories[1].id })
     ).toBeTruthy();
   });
 
-  it("Should not be able to remove a non-existent category", async () => {
+  it("Should not be able to remove a non-existent category.", async () => {
     await removeCategoryService.execute({ id: categories[2].id });
 
     await expect(

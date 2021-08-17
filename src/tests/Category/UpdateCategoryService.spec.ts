@@ -32,7 +32,7 @@ describe("Update Category", () => {
     category[2] = await createCategoryService.execute(categoryData[2]);
   });
 
-  it("Should be able to update a category", async () => {
+  it("Should be able to update a category.", async () => {
     const categoryData = {
       name: "Aventura",
     };
@@ -47,7 +47,7 @@ describe("Update Category", () => {
     expect(category[1].name).toBe("Romance");
   });
 
-  it("Should not be able to update a category name that already exists", async () => {
+  it("Should not be able to update a category name that already exists.", async () => {
     const categoryData = {
       name: "Romance",
     };
