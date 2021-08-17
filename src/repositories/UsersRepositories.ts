@@ -92,8 +92,7 @@ class UsersRepositories extends Repository<User> implements IUsersRepositories {
 
   /**
    * Remove um usuário o Banco de Dados.
-   * @param userId string | null
-   * @param email string
+   * @param user User
    * @returns Promise<boolean>
    */
   async removeUser(user: User): Promise<boolean> {
