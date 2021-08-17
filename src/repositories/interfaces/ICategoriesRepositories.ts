@@ -37,6 +37,13 @@ interface ICategoriesRepositories {
    * @returns Promise<Category>
    */
   updateCategory(category: Category): Promise<Category>;
+
+  /**
+   * Remove uma categoria.
+   * @param category Category
+   * @returns Promise<boolean>
+   */
+  removeCategory(category: Category): Promise<boolean>;
 }
 
 export { ICategoriesRepositories };

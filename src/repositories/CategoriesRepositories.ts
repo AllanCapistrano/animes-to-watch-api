@@ -62,7 +62,7 @@ class CategoriesRepositories
    * @param name string
    * @returns Promise<Category | false>
    */
-  async categoryExists(id: string, name?: string): Promise<false | Category> {
+  async categoryExists(id: string, name?: string): Promise<Category | false> {
     if (id) {
       return await this.findOne(id);
     }
@@ -93,6 +93,15 @@ class CategoriesRepositories
       ...category,
       name: nameFirstLetrterUpperCase.join(" "),
     });
+  }
+
+  /**
+   * Remove uma categoria do Banco de Dados.
+   * @param category Category
+   * @returns Promise<boolean>
+   */
+  async removeCategory(category: Category): Promise<boolean> {
+    return !!(await this.remove(category));
   }
 }
 
