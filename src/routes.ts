@@ -10,6 +10,7 @@ import { removeUserFactory } from "./factories/User/RemoveUserFactory";
 
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 import { updateCategoryFactory } from "./factories/Category/UpdateCategoryFactory";
+import { removeCategoryFactory } from "./factories/Category/RemoveCategoryFactory";
 
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
@@ -72,11 +73,24 @@ router.post(
     createCategoryFactory().handle(request, response)
 );
 
+/**
+ * Rota para alterar as informações de uma categoria.
+ */
 router.put(
   "/categories/update",
   ensureAuthenticated,
   (request: Request, response: Response) =>
     updateCategoryFactory().handle(request, response)
+);
+
+/**
+ * Rota para remoção de categorias.
+ */
+router.delete(
+  "/categories/delete/:id",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    removeCategoryFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
