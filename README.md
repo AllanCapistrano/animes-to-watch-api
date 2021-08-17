@@ -14,7 +14,7 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 ### 🍜 Anime: ###
 - [x] Criação
 - [x] Edição
-- [ ] Remoção
+- [x] Remoção
 - [x] Relacionamento com Category.
 - [ ] Listagem
 
@@ -33,7 +33,7 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 - [x] Edição de animes
 - [x] Edição de categorias
 - [x] Remoção de usuários
-- [ ] Remoção de animes
+- [x] Remoção de animes
 - [x] Remoção de categorias
 - [ ] Listagem de animes
 - [ ] Listagem de categorias
