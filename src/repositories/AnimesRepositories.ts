@@ -69,6 +69,15 @@ class AnimesRepositories
   async updateAnime(anime: Anime): Promise<Anime> {
     return await this.save(anime);
   }
+
+  /**
+   * Remove um anime do Banco de Dados.
+   * @param anime Anime
+   * @returns Promise<boolean>
+   */
+  async removeAnime(anime: Anime): Promise<boolean> {
+    return !!(await this.remove(anime));
+  }
 }
 
 export { AnimesRepositories };

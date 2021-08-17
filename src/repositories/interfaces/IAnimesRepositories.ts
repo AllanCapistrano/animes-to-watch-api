@@ -37,6 +37,13 @@ interface IAnimesRepositories {
    * @return Promise<Anime>
    */
   updateAnime(anime: Anime): Promise<Anime>;
+
+  /**
+   * Remove um anime.
+   * @param anime Anime
+   * @returns Promise<boolean>
+   */
+  removeAnime(anime: Anime): Promise<boolean>;
 }
 
 export { IAnimesRepositories };
