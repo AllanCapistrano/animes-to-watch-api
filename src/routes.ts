@@ -14,6 +14,7 @@ import { removeCategoryFactory } from "./factories/Category/RemoveCategoryFactor
 
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
+import { removeAnimeFactory } from "./factories/Anime/RemoveAnimeFactory";
 
 const router = Router();
 
@@ -113,6 +114,16 @@ router.put(
   ensureAuthenticated,
   (request: Request, response: Response) =>
     updateAnimeFactory().handle(request, response)
+);
+
+/**
+ * Rota para a remoção de uma anime.
+ */
+router.delete(
+  "/animes/delete/:id",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    removeAnimeFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 //                                                                            //
