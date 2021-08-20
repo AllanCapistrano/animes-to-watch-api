@@ -112,6 +112,14 @@ class CategoriesRepositoriesInMemory implements ICategoriesRepositories {
       }
     }
   }
+
+  /**
+   * Retorna todas as categorias cadastradas.
+   * @returns Promise<Category[]>
+   */
+  async listCategories(): Promise<Category[]> {
+    return this.categories;
+  }
 }
 
 export { CategoriesRepositoriesInMemory };
