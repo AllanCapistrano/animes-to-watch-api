@@ -16,6 +16,10 @@ class ListCategoriesService {
   async execute() {
     const categories = this.categoryRepository.listCategories();
 
+    /**
+     * A função classToPlain() permite a execução dos campos da entidade que são
+     * especificados por uma tag da biblioteca class-transformer.
+     */
     return classToPlain(categories);
   }
 }
