@@ -15,15 +15,17 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 - [x] Criação
 - [x] Edição
 - [x] Remoção
-- [x] Relacionamento com Category.
+- [x] Relacionamento com Category
 - [ ] Listagem
+- [ ] Recomendação de anime aletório
+- [ ] Recomendação de anime filtrado pela categoria
 
 ### 🗃️ Categoria: ###
 - [x] Criação
 - [x] Edição
 - [x] Remoção
 - [x] Relacionamento com Anime
-- [ ] Listagem
+- [x] Listagem
 
 ### 🔐 Autenticação: ###
 - [x] Login
@@ -36,7 +38,7 @@ API destinada para a organização dos animes que eu ainda vou assistir. Nela é
 - [x] Remoção de animes
 - [x] Remoção de categorias
 - [ ] Listagem de animes
-- [ ] Listagem de categorias
+- [x] Listagem de categorias
 
 ------------
 
