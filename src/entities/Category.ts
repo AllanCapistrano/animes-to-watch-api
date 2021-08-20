@@ -7,6 +7,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Exclude } from "class-transformer";
 
 import { Anime } from "./Anime";
 import { AnimeCategory } from "./AnimeCategory";
@@ -25,9 +26,11 @@ class Category {
   @OneToMany(() => AnimeCategory, ac => ac.category)
   animeConnection: Promise<Anime[]>
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 
