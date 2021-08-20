@@ -44,6 +44,12 @@ interface ICategoriesRepositories {
    * @returns Promise<boolean>
    */
   removeCategory(category: Category): Promise<boolean>;
+
+  /**
+   * Retorna todas as categorias cadastradas.
+   * @returns Promise<Category[]>
+   */
+  listCategories(): Promise<Category[]>
 }
 
 export { ICategoriesRepositories };

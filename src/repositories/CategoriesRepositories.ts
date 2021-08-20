@@ -103,6 +103,14 @@ class CategoriesRepositories
   async removeCategory(category: Category): Promise<boolean> {
     return !!(await this.remove(category));
   }
+
+  /**
+   * Retorna todas as categorias cadastradas no Banco de Dados.
+   * @returns Promise<Category[]>
+   */
+  async listCategories(): Promise<Category[]> {
+    return this.find();
+  }
 }
 
 export { CategoriesRepositories };
