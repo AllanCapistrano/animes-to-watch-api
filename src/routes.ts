@@ -11,6 +11,7 @@ import { removeUserFactory } from "./factories/User/RemoveUserFactory";
 import { createCategoryFactory } from "./factories/Category/CreateCategoryFactory";
 import { updateCategoryFactory } from "./factories/Category/UpdateCategoryFactory";
 import { removeCategoryFactory } from "./factories/Category/RemoveCategoryFactory";
+import { listCategoriesFactory } from "./factories/Category/ListCategoriesFactory";
 
 import { createAnimeFactory } from "./factories/Anime/CreateAnimeFactory";
 import { updateAnimeFactory } from "./factories/Anime/UpdateAnimeFactory";
@@ -92,6 +93,16 @@ router.delete(
   ensureAuthenticated,
   (request: Request, response: Response) =>
     removeCategoryFactory().handle(request, response)
+);
+
+/**
+ * Rota para listagem de categorias.
+ */
+router.get(
+  "/categories",
+  ensureAuthenticated,
+  (request: Request, response: Response) =>
+    listCategoriesFactory().handle(request, response)
 );
 /* -------------------------------------------------------------------------- */
 
